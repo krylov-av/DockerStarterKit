@@ -8,13 +8,10 @@ docker images
 docker rmi {IMAGE ID}
 ---
 
-2. Make images for our project
-docker-compose build --no-cache
-
-3. Install Laravel
+2. Install Laravel
 docker run --rm --interactive --tty --volume "%cd%":/app composer create-project --prefer-dist laravel/laravel project
 
-4. Edit /project/.env
+3. Edit /project/.env
 Pay attention database (DB_HOST pointed in docker-compose.yaml and these names must be the same).
 For example
 
@@ -25,13 +22,8 @@ DB_DATABASE=laravel
 DB_USERNAME=root
 DB_PASSWORD=secret
 
-But next step this config will be thrown out.
+4. Make images for our project
+docker-compose build --no-cache
 
-5. Change .env file to file in project. Edit docker-compose.yaml
-mysql:
-    image: mysql:8.0.21
-    env_file:
-      - ./project/.env
-
-6. Run project
+5. Run project
 docker-compose up -d
